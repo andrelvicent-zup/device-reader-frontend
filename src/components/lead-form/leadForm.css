@@ -1,0 +1,22 @@
+.botao-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 5vh;
+}
+
+.botao-link {
+  background-color: rgb(53, 162, 235);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  text-decoration: none;
+  font-family: "Helvetica Neue", sans-serif;
+}
+
+.botao-link:hover {
+  background-color: #0073e6;
+  cursor: pointer;
+}

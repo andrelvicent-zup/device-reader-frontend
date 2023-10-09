@@ -1,0 +1,12 @@
+.contador-container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-family: "Helvetica Neue", sans-serif;
+  color: #333;
+}
+
+.contador-numero {
+  font-size: 25px;
+  font-weight: bold;
+}
