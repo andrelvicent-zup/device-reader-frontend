@@ -9,6 +9,7 @@ import {
   Legend,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
+import { messageProps } from "../mainComponent";
 
 ChartJS.register(
   CategoryScale,
@@ -19,14 +20,6 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-
-const labels = [
-  new Date().toLocaleTimeString(),
-  new Date().toLocaleTimeString(),
-  new Date().toLocaleTimeString(),
-  new Date().toLocaleTimeString(),
-  new Date().toLocaleTimeString(),
-];
 
 const tempOptions = {
   responsive: true,
@@ -41,18 +34,27 @@ const tempOptions = {
   },
 };
 
-const tempData = {
-  labels,
-  datasets: [
-    {
-      label: "Temperatura",
-      data: labels.map(() =>
-        parseInt((Math.random() * (30 - 70) + 70) as unknown as string)
-      ),
-      borderColor: "rgb(255, 99, 132)",
-      backgroundColor: "rgba(255, 99, 132, 0.5)",
-    },
-  ],
+const tempData = (data: messageProps[]) => {
+  const tempData: number[] = [];
+  data.forEach((element) => tempData.push(element.data.temperatura));
+  let index = 0;
+  const labels: string[] = [];
+  data.forEach((element) => labels.push(new Date(element.messageReadDate).toLocaleTimeString()));
+  return {
+    labels,
+    datasets: [
+      {
+        label: "Temperatura",
+        data: labels.map(() => {
+          const response = tempData[index]
+          index = index + 1;
+          return response;
+        }),
+        borderColor: "rgb(255, 99, 132)",
+        backgroundColor: "rgba(255, 99, 132, 0.5)",
+      },
+    ],
+  };
 };
 
 const humOptions = {
@@ -68,18 +70,28 @@ const humOptions = {
   },
 };
 
-const humData = {
-  labels,
-  datasets: [
-    {
-      label: "Umidade",
-      data: labels.map(() =>
-        parseInt((Math.random() * 100) as unknown as string)
-      ),
-      borderColor: "rgb(53, 162, 235)",
-      backgroundColor: "rgba(53, 162, 235, 0.5)",
-    },
-  ],
+const humData = (data: messageProps[]) => {
+  const humData: number[] = [];
+  data.forEach((element) => humData.push(element.data.umidade));
+  let index = 0;
+
+  const labels: string[] = [];
+  data.forEach((element) => labels.push(new Date(element.messageReadDate).toLocaleTimeString()));
+  return {
+    labels,
+    datasets: [
+      {
+        label: "Umidade",
+        data: labels.map(() => {
+          const response = humData[index]
+          index = index + 1;
+          return response;
+        }),
+        borderColor: "rgb(53, 162, 235)",
+        backgroundColor: "rgba(53, 162, 235, 0.5)",
+      },
+    ],
+  };
 };
 
 const rainOptions = {
@@ -95,30 +107,37 @@ const rainOptions = {
   },
 };
 
-const rainData = {
-  labels,
-  datasets: [
-    {
-      label: "Pluviosidade",
-      data: labels.map(() =>
-        parseInt(
-          (Math.random() * (250000 - 300000) + 300000) as unknown as string
-        )
-      ),
-      borderColor: "rgb(46, 204, 113)",
-      backgroundColor: "rgba(46, 204, 113, 0.5)",
-    },
-  ],
+const rainData = (data: messageProps[]) => {
+  const rainData: number[] = [];
+  data.forEach((element) => rainData.push(element.data.chuvaAcumulada));
+  let index = 0;
+  const labels: string[] = [];
+  data.forEach((element) => labels.push(new Date(element.messageReadDate).toLocaleTimeString()));
+  return {
+    labels,
+    datasets: [
+      {
+        label: "Pluviosidade",
+        data: labels.map(() => {
+          const response = rainData[index]
+          index = index + 1;
+          return response;
+        }),
+        borderColor: "rgb(46, 204, 113)",
+        backgroundColor: "rgba(46, 204, 113, 0.5)",
+      },
+    ],
+  };
 };
 
-function LineSequence() {
+const LineSequence: React.FC<{ items: messageProps[] }> = ({ items }) => {
   return (
     <div>
-      <Line options={tempOptions} data={tempData} />
-      <Line options={humOptions} data={humData} />
-      <Line options={rainOptions} data={rainData} />
+      <Line options={tempOptions} data={tempData(items)} />
+      <Line options={humOptions} data={humData(items)} />
+      <Line options={rainOptions} data={rainData(items)} />
     </div>
   );
-}
+};
 
 export default LineSequence;

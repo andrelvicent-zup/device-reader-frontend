@@ -1,28 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './rainfall.css'
 
 interface ContadorNumeroProps {
-  titulo: string;
-  apiUrl: string;
+  numero: number;
 }
 
-const ContadorDeGotas: React.FC<ContadorNumeroProps> = ({ titulo, apiUrl }) => {
-  const [numero, setNumero] = useState<number | null>(null);
-
-  useEffect(() => {
-    fetch(apiUrl)
-      .then((response) => response.json())
-      .then((data) => {
-        setNumero(data.numero);
-      })
-      .catch((error) => {
-        console.error('Erro ao buscar número da API:', error);
-      });
-  }, [apiUrl]);
-
+const ContadorDeGotas: React.FC<ContadorNumeroProps> = ({  numero }) => {
   return (
     <div className="contador-container">
-      <p className="contador-numero">Volume Instantâneo: {numero !== null ? numero : 5} mL</p>
+      <p className="contador-numero">Volume Instantâneo: {numero ? numero : 0} mL</p>
     </div>
   );
 };
