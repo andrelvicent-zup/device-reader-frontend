@@ -12,7 +12,7 @@ Projeto responsável por exibir as informações consumidas do backend.
 
 ## Introdução
 
-Este projeto foi desenvolvido com o objetivo de ser um client inteligente, resiliente e autenticável.
+Este projeto foi desenvolvido com o objetivo de ser um client inteligente e resiliente ao consumir as informações do backend.
 
 ## Recursos
 
