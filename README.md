@@ -34,7 +34,7 @@ Este projeto foi desenvolvido com o objetivo de ser um client inteligente, resil
 * Clone o repositório `git clone https://github.com/andrelvicent-zup/device-reader-frontend.git`
 * Digite `npm install`
 * Digite `npm start` para executar o projeto localmente.
-* O servidor front-end estará disponível na porta 3000.
+* O servidor front-end estará disponível na porta `3000`.
 
 ## Contribuidores
 
